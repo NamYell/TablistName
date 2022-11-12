@@ -2,7 +2,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class command implements CommandExecutor {
 
@@ -20,7 +24,32 @@ public class command implements CommandExecutor {
                 p.setPlayerListName(ChatColor.WHITE + strings[0]);
                 p.setDisplayName(strings[0]);
 
-                DataManager.getData().set("data." + p.getUniqueId() + ".name", strings[0]);
+                List<String> uuid = new ArrayList<>();
+
+                FileConfiguration file = main.data.getConfig();
+
+                if (DataManager.getData().contains("data")) {
+
+                    file.getConfigurationSection("data").getKeys(false).forEach(username -> {
+
+                        String str = file.getString("data." + username + ".uuid");
+
+                        if (str.equalsIgnoreCase(p.getUniqueId().toString())) {
+                            file.set("data." + username + ".name", strings[0]);
+                        }
+
+                        uuid.add(str);
+
+                    });
+                }
+
+                if (!uuid.contains(p.getUniqueId().toString())) {
+                    DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                    DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
+                    DataManager.getData().set("data." + p.getName() + ".rank", "player");
+                }
+
+                DataManager.saveData();
 
             } else {
 
@@ -30,6 +59,34 @@ public class command implements CommandExecutor {
                                 " " + ChatColor.GOLD + strings[0]);
                         p.setDisplayName(ChatColor.GOLD + "[" + ChatColor.WHITE + "OP" + ChatColor.GOLD + "]" +
                                 " " + ChatColor.GOLD + strings[0]);
+
+                        List<String> uuid = new ArrayList<>();
+
+                        FileConfiguration file = main.data.getConfig();
+
+                        if (DataManager.getData().contains("data")) {
+
+                            file.getConfigurationSection("data").getKeys(false).forEach(username -> {
+
+                                String str = file.getString("data." + username + ".uuid");
+
+                                if (str.equalsIgnoreCase(p.getUniqueId().toString())) {
+                                    file.set("data." + username + ".name", strings[0]);
+                                    file.set("data." + username + ".rank", "op");
+                                }
+
+                                uuid.add(str);
+
+                            });
+                        }
+
+                        if (!uuid.contains(p.getUniqueId().toString())) {
+                            DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                            DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
+                            DataManager.getData().set("data." + p.getName() + ".rank", "op");
+                        }
+
+                        DataManager.saveData();
 
                     } else {
                         p.sendMessage("This command is only allowed to SERVER OP!");
@@ -42,9 +99,65 @@ public class command implements CommandExecutor {
                     p.setDisplayName(ChatColor.RED + "[" + ChatColor.WHITE + "YT" + ChatColor.RED + "]" +
                             " " + ChatColor.RED + strings[0]);
 
+                    List<String> uuid = new ArrayList<>();
+
+                    FileConfiguration file = main.data.getConfig();
+
+                    if (DataManager.getData().contains("data")) {
+
+                        file.getConfigurationSection("data").getKeys(false).forEach(username -> {
+
+                            String str = file.getString("data." + username + ".uuid");
+
+                            if (str.equalsIgnoreCase(p.getUniqueId().toString())) {
+                                file.set("data." + username + ".name", strings[0]);
+                                file.set("data." + username + ".rank", "yt");
+                            }
+
+                            uuid.add(str);
+
+                        });
+                    }
+
+                    if (!uuid.contains(p.getUniqueId().toString())) {
+                        DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                        DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
+                        DataManager.getData().set("data." + p.getName() + ".rank", "yt");
+                    }
+
+                    DataManager.saveData();
+
                 } else if (strings[1].equalsIgnoreCase("player")) {
                     p.setPlayerListName(ChatColor.WHITE + strings[0]);
                     p.setDisplayName(strings[0]);
+
+                    List<String> uuid = new ArrayList<>();
+
+                    FileConfiguration file = main.data.getConfig();
+
+                    if (DataManager.getData().contains("data")) {
+
+                        file.getConfigurationSection("data").getKeys(false).forEach(username -> {
+
+                            String str = file.getString("data." + username + ".uuid");
+
+                            if (str.equalsIgnoreCase(p.getUniqueId().toString())) {
+                                file.set("data." + username + ".name", strings[0]);
+                                file.set("data." + username + ".rank", "player");
+                            }
+
+                            uuid.add(str);
+
+                        });
+                    }
+
+                    if (!uuid.contains(p.getUniqueId().toString())) {
+                        DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                        DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
+                        DataManager.getData().set("data." + p.getName() + ".rank", "player");
+                    }
+
+                    DataManager.saveData();
 
                 }
 
