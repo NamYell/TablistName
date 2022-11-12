@@ -5,8 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class command implements CommandExecutor {
 
@@ -44,7 +43,7 @@ public class command implements CommandExecutor {
                 }
 
                 if (!uuid.contains(p.getUniqueId().toString())) {
-                    DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                    DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId().toString());
                     DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
                     DataManager.getData().set("data." + p.getName() + ".rank", "player");
                 }
@@ -81,7 +80,7 @@ public class command implements CommandExecutor {
                         }
 
                         if (!uuid.contains(p.getUniqueId().toString())) {
-                            DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                            DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId().toString());
                             DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
                             DataManager.getData().set("data." + p.getName() + ".rank", "op");
                         }
@@ -120,7 +119,7 @@ public class command implements CommandExecutor {
                     }
 
                     if (!uuid.contains(p.getUniqueId().toString())) {
-                        DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                        DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId().toString());
                         DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
                         DataManager.getData().set("data." + p.getName() + ".rank", "yt");
                     }
@@ -152,7 +151,7 @@ public class command implements CommandExecutor {
                     }
 
                     if (!uuid.contains(p.getUniqueId().toString())) {
-                        DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId());
+                        DataManager.getData().set("data." + p.getName() + ".uuid", p.getUniqueId().toString());
                         DataManager.getData().set("data." + p.getName() + ".name", strings[0]);
                         DataManager.getData().set("data." + p.getName() + ".rank", "player");
                     }

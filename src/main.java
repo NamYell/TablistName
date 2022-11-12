@@ -9,13 +9,9 @@ public class main extends JavaPlugin {
 
         data = new DataManager(this);
 
-        if (data.getConfig().contains("data")) {
-            event.loadName();
-        }
-
         getLogger().info("Plugin has been enabled.");
         getCommand("name").setExecutor(new command());
-        getServer().getPluginManager().registerEvents(new event(), this);
+        getServer().getPluginManager().registerEvents(new onJoinEvent(), this);
 
     }
 
