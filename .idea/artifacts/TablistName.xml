@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TablistName">
+    <output-path>$PROJECT_DIR$/out/artifacts/TablistName</output-path>
+    <root id="archive" name="TablistName.jar">
+      <element id="module-output" name="TablistName" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
+    </root>
+  </artifact>
+</component>

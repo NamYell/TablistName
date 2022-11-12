@@ -20,6 +20,8 @@ public class command implements CommandExecutor {
                 p.setPlayerListName(ChatColor.WHITE + strings[0]);
                 p.setDisplayName(strings[0]);
 
+                DataManager.getData().set("data." + p.getUniqueId() + ".name", strings[0]);
+
             } else {
 
                 if (strings[1].equalsIgnoreCase("op")) {
