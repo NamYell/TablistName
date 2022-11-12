@@ -12,6 +12,7 @@ public class main extends JavaPlugin {
         getLogger().info("Plugin has been enabled.");
         getCommand("name").setExecutor(new command());
         getServer().getPluginManager().registerEvents(new onJoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new onQuitEvent(), this);
 
     }
 
